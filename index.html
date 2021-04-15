@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Consuming-API</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script>
+        getContent()
+
+        async function getContent() {
+            try {
+                const response = await fetch('http://localhost:4567/') //rota do backend
+                const data = await response.json() //consome o JSON enviado pelo backend através do Axios
+                show(data);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        function show(users) {
+            let output = ''
+
+            for(let user of users) {
+                output += `<li>${user.name}</li>`
+            }
+
+            document.querySelector('body').innerHTML = output
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
